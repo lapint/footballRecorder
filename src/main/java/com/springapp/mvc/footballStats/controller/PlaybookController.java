@@ -4,7 +4,6 @@ import com.springapp.mvc.footballStats.model.Play;
 import com.springapp.mvc.footballStats.service.PlaybookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,14 +23,19 @@ public class PlaybookController {
 	public ModelAndView addplayPage(){
 		ModelAndView modelAndView = new ModelAndView("add_play_form");
 		modelAndView.addObject("play", new Play());
-		return modelAndView;
+        List<Play> plays = playbookService.getPlays();
+        modelAndView.addObject("plays", plays);
+
+        return modelAndView;
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
     public ModelAndView addingplay(@ModelAttribute("Playbook")Play play){
-		ModelAndView modelAndView = new ModelAndView("home");
+		ModelAndView modelAndView = new ModelAndView("add_play_form");
 		playbookService.addPlay(play);
-		
+        List<Play> plays = playbookService.getPlays();
+        modelAndView.addObject("play", new Play());
+        modelAndView.addObject("plays", plays);
 		String message = "play was successfully added.";
 		modelAndView.addObject("message", message);
 		
@@ -58,7 +62,7 @@ public class PlaybookController {
     @RequestMapping(value="/edit/{id}", method=RequestMethod.POST)  
     public ModelAndView editingplay(@ModelAttribute Play play, @PathVariable Integer id) {  
           
-        ModelAndView modelAndView = new ModelAndView("home");  
+        ModelAndView modelAndView = new ModelAndView("login");
           
         playbookService.updatePlay(play);  
           
@@ -70,8 +74,11 @@ public class PlaybookController {
       
     @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)  
     public ModelAndView deleteplay(@PathVariable Integer id) {  
-        ModelAndView modelAndView = new ModelAndView("home");  
-        playbookService.deletePlay(id);  
+        ModelAndView modelAndView = new ModelAndView("add_play_form");
+        playbookService.deletePlay(id);
+        modelAndView.addObject("play", new Play());
+        List<Play> plays = playbookService.getPlays();
+        modelAndView.addObject("plays", plays);
         String message = "play was successfully deleted.";  
         modelAndView.addObject("message", message);  
         return modelAndView;  

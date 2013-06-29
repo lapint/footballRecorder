@@ -4,7 +4,6 @@ import com.springapp.mvc.footballStats.model.Player;
 import com.springapp.mvc.footballStats.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,15 +22,19 @@ public class PlayerController {
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public ModelAndView addPlayerPage(){
 		ModelAndView modelAndView = new ModelAndView("add_player_form");
+        List<Player> players = playerService.getPlayers();
 		modelAndView.addObject("player", new Player());
+        modelAndView.addObject("players", players);
 		return modelAndView;
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public ModelAndView addingPlayer(@ModelAttribute Player player){
-		ModelAndView modelAndView = new ModelAndView("home");
+		ModelAndView modelAndView = new ModelAndView("add_player_form");
 		playerService.addPlayer(player);
-		
+        List<Player> players = playerService.getPlayers();
+        modelAndView.addObject("player", new Player());
+        modelAndView.addObject("players", players);
 		String message = "Player was successfully added.";
 		modelAndView.addObject("message", message);
 		
@@ -59,7 +62,7 @@ public class PlayerController {
     @RequestMapping(value="/edit/{id}", method=RequestMethod.POST)  
     public ModelAndView editingPlayer(@ModelAttribute Player player, @PathVariable Integer id) {  
           
-        ModelAndView modelAndView = new ModelAndView("home");  
+        ModelAndView modelAndView = new ModelAndView("login");
           
         playerService.updatePlayer(player);  
           
@@ -71,8 +74,11 @@ public class PlayerController {
       
     @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)  
     public ModelAndView deleteplayer(@PathVariable Integer id) {  
-        ModelAndView modelAndView = new ModelAndView("home");  
-        playerService.deletePlayer(id);  
+        ModelAndView modelAndView = new ModelAndView("add_player_form");
+        playerService.deletePlayer(id);
+        List<Player> players = playerService.getPlayers();
+        modelAndView.addObject("player", new Player());
+        modelAndView.addObject("players", players);
         String message = "player was successfully deleted.";  
         modelAndView.addObject("message", message);  
         return modelAndView;  

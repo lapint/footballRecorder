@@ -33,7 +33,9 @@ public class PlayResultController {
 		List<Player> players = playerService.getPlayers();
 		List<Play> plays = playbookService.getPlays();
 		ModelAndView modelAndView = new ModelAndView("recordPlay");
+        List<PlayResult> playResults = playResultService.getPlayResults();
 		modelAndView.addObject("playresult", new PlayResult());
+        modelAndView.addObject("playresults", playResults);
 		modelAndView.addObject("plays", plays);
 		modelAndView.addObject("players", players);
 
@@ -42,12 +44,16 @@ public class PlayResultController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
     @Transactional
-	public ModelAndView addingplayResult(@ModelAttribute PlayResult playResult){
-		ModelAndView modelAndView = new ModelAndView("home");
+	public ModelAndView addingplayResult(@ModelAttribute("playresult") PlayResult playResult){
 		playResultService.addPlayResult(playResult);
-		
-		String message = "playResult was successfully added.";
-		modelAndView.addObject("message", message);
+        List<Player> players = playerService.getPlayers();
+        List<Play> plays = playbookService.getPlays();
+        ModelAndView modelAndView = new ModelAndView("recordPlay");
+        List<PlayResult> playResults = playResultService.getPlayResults();
+        modelAndView.addObject("playresult", new PlayResult());
+        modelAndView.addObject("playresults", playResults);
+        modelAndView.addObject("plays", plays);
+        modelAndView.addObject("players", players);
 		
 		return modelAndView;
 	}
@@ -75,7 +81,7 @@ public class PlayResultController {
     @RequestMapping(value="/edit/{id}", method=RequestMethod.POST)  
     public ModelAndView editingplay(@ModelAttribute PlayResult playResult, @PathVariable Integer id) {  
           
-        ModelAndView modelAndView = new ModelAndView("home");  
+        ModelAndView modelAndView = new ModelAndView("login");
           
         playResultService.updatePlayResult(playResult);  
           
@@ -87,8 +93,15 @@ public class PlayResultController {
       
     @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)  
     public ModelAndView deleteplay(@PathVariable Integer id) {  
-        ModelAndView modelAndView = new ModelAndView("home");  
-        playResultService.deletePlayResult(id);  
+        ModelAndView modelAndView = new ModelAndView("login");
+        playResultService.deletePlayResult(id);
+        List<Player> players = playerService.getPlayers();
+        List<Play> plays = playbookService.getPlays();
+        List<PlayResult> playResults = playResultService.getPlayResults();
+        modelAndView.addObject("playresult", new PlayResult());
+        modelAndView.addObject("playresults", playResults);
+        modelAndView.addObject("plays", plays);
+        modelAndView.addObject("players", players);
         String message = "play was successfully deleted.";  
         modelAndView.addObject("message", message);  
         return modelAndView;  

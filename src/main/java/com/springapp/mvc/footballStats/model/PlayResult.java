@@ -7,78 +7,114 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="PlayResult")
+@Table(name="Plays")
 public class PlayResult {
 
 	@Id
 	@GeneratedValue
 	private Integer id;
+
+    private String Opponent;
+
+    private String Date;
+
+	private String Play;
 	
-	private String Name;
-	
-	private Integer Number;
-	
-	private String Position;
-	
-	private String Year;
-	
-	private String Platoon;
-	
+	private String Carrier;
+
+    private String Result;
+
+    private Integer Yards;
+
+    private Integer YTG;
+
+    private Integer Down;
+
+    private String Tackler;
+
+
 	public Integer getId(){
 		return this.id;
 	}
-	
-	public void setId(Integer id){
-		this.id = id;
-	}
-	
-	public String getName(){
-		return this.Name;
-	}
-	
-	public void setName(String name){
-		this.Name = name;
-	}
-	
-	public Integer getNumber(){
-		return this.Number;
-	}
-	
-	public void setNumber(Integer number){
-		this.Number = number;
-	}
-	
-	public String getPosition(){
-		return this.Position;
-	}
-	
-	public void setPosition(String position){
-		this.Position = position;
-	}
-	
-	public String getYear(){
-		return this.Year;
-	}
-	
-	public void setYear(String year){
-		this.Year = year;
-	}
-	
-	public String getPlatoon(){
-		return this.Platoon;
-	}
-	
-	public void setPlatoon(String platoon){
-		this.Platoon = platoon;
-	}
 
-	public Object getType() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public Integer getYards(){
+        return  this.Yards;
+    }
 
-	public void setType(Object type) {
-		// TODO Auto-generated method stub
-		
+    public void setYards(Integer yards){
+        this.Yards = yards;
+    }
+
+    public String getTackler(){
+        return this.Tackler;
+    }
+
+    public void setTackler(String Tackler){
+        this.Tackler = Tackler;
+    }
+
+
+    public String getResult(){
+        return this.Result;
+    }
+
+    public void setResult(String result){
+        this.Result = result;
+    }
+
+    public Integer getYTG(){
+        return this.YTG;
+    }
+
+    public void setYTG(Integer YTG){
+        this.YTG = YTG;
+    }
+
+    public Integer getDown(){
+        return this.Down;
+    }
+
+    public void setDown(Integer Down){
+        this.Down = Down;
+    }
+
+	public String getOpponent(){
+		return this.Opponent;
 	}
+	
+	public void setOpponent(String Opponent){
+		this.Opponent = Opponent;
+	}
+	
+	public String getDate(){
+		return this.Date;
+	}
+	
+	public void setDate(String Date){
+		this.Date = Date;
+	}
+	
+	public String getCarrier(){
+		return this.Carrier;
+	}
+	
+	public void setCarrier(String Carrier){
+		this.Carrier = Carrier;
+	}
+	
+	public String getPlay(){
+		return this.Play;
+	}
+	
+	public void setPlay(String play){
+		this.Play = play;
+	}
+	
+//	public String getPlatoon(){
+//		return this.Platoon;
+//	}
+//
+//	public void setPlatoon(String platoon){
+//		this.Platoon = platoon;
+//	}
 }

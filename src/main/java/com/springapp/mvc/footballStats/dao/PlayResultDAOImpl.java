@@ -25,11 +25,11 @@ public class PlayResultDAOImpl implements PlayResultDAO{
 	}
 
 	public void updatePlayResult(PlayResult playResult) {
-		PlayResult playResultToUpdate = getPlayResult(playResult.getId());
-		playResultToUpdate.setName(playResult.getName());
-		playResultToUpdate.setType(playResult.getType());
-		playResultToUpdate.setPlatoon(playResult.getPlatoon());
-		getCurrentSession().update(playResultToUpdate);
+//		PlayResult playResultToUpdate = getPlayResult(playResult.getId());
+//		playResultToUpdate.setName(playResult.getName());
+//		playResultToUpdate.setType(playResult.getType());
+//		playResultToUpdate.setPlatoon(playResult.getPlatoon());
+//		getCurrentSession().update(playResultToUpdate);
 	}
 
 	public PlayResult getPlayResult(int id) {
@@ -46,7 +46,7 @@ public class PlayResultDAOImpl implements PlayResultDAO{
 
 	@SuppressWarnings("unchecked")
 	public List<PlayResult> getPlayResults() {
-		return getCurrentSession().createQuery("from PlayResults").list();
+		return getCurrentSession().createQuery("from PlayResult").list();
 	}
 	
 }
