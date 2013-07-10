@@ -34,8 +34,8 @@ public class PlayResultServiceImpl implements PlayResultService{
 		playResultDAO.deletePlayResult(id);
 	}
 
-	public List<PlayResult> getPlayResults() {
-		return playResultDAO.getPlayResults();
+	public List<PlayResult> getPlayResults(Integer game_Id) {
+		return playResultDAO.getPlayResults(game_Id);
 	}
 
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -21,15 +22,19 @@ public class PlayerController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public ModelAndView addPlayerPage(){
+
 		ModelAndView modelAndView = new ModelAndView("add_player_form");
         List<Player> players = playerService.getPlayers();
+
 		modelAndView.addObject("player", new Player());
         modelAndView.addObject("players", players);
 		return modelAndView;
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public ModelAndView addingPlayer(@ModelAttribute Player player){
+	public ModelAndView addingPlayer(@ModelAttribute Player player, Principal principal){
+        final String currentUser = principal.getName();
+        player.setUser_Id(currentUser);
 		ModelAndView modelAndView = new ModelAndView("add_player_form");
 		playerService.addPlayer(player);
         List<Player> players = playerService.getPlayers();

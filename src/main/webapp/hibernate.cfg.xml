@@ -8,5 +8,9 @@
         <mapping class="com.springapp.mvc.footballStats.model.Player" />
         <mapping class="com.springapp.mvc.footballStats.model.Play" />
         <mapping class="com.springapp.mvc.footballStats.model.PlayResult" />
+        <mapping class="com.springapp.mvc.footballStats.model.User" />
+        <mapping class="com.springapp.mvc.footballStats.model.UserRole" />
+        <mapping class="com.springapp.mvc.footballStats.model.PlayerStat" />
+        <mapping class="com.springapp.mvc.footballStats.model.Game" />
     </session-factory>
 </hibernate-configuration>

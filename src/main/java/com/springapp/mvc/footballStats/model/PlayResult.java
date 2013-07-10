@@ -14,6 +14,10 @@ public class PlayResult {
 	@GeneratedValue
 	private Integer id;
 
+    private Integer game_Id;
+
+    private String User_Id;
+
     private String Opponent;
 
     private String Date;
@@ -21,6 +25,8 @@ public class PlayResult {
 	private String Play;
 	
 	private String Carrier;
+
+    private Integer Carrier_Id;
 
     private String Result;
 
@@ -32,6 +38,29 @@ public class PlayResult {
 
     private String Tackler;
 
+    public Integer getCarrier_Id() {
+        return Carrier_Id;
+    }
+
+    public void setCarrier_Id(Integer carrier_Id) {
+        Carrier_Id = carrier_Id;
+    }
+
+    public Integer getGame_Id() {
+        return game_Id;
+    }
+
+    public void setGame_Id(Integer game_Id) {
+        this.game_Id = game_Id;
+    }
+
+    public String getUser_Id() {
+        return User_Id;
+    }
+
+    public void setUser_Id(String user_Id) {
+        User_Id = user_Id;
+    }
 
 	public Integer getId(){
 		return this.id;

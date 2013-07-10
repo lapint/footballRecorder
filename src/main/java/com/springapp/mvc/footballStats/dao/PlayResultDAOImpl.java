@@ -4,10 +4,13 @@ import com.springapp.mvc.footballStats.model.PlayResult;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.Principal;
 import java.util.List;
 
 @Repository
@@ -45,8 +48,9 @@ public class PlayResultDAOImpl implements PlayResultDAO{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<PlayResult> getPlayResults() {
-		return getCurrentSession().createQuery("from PlayResult").list();
+	public List<PlayResult> getPlayResults(Integer game_Id) {
+        String user = SecurityContextHolder.getContext().getAuthentication().getName();
+		return getCurrentSession().createQuery("from PlayResult pr where pr.User_Id ='" + user+"' AND game_Id=" + game_Id).list();
 	}
 	
 }

@@ -52,23 +52,9 @@
                 </div>
 
                 <div class="control-group">
-                    <label class="control-label" for="inputOpponent">Opponent</label>
-                    <div class="controls">
-                        <form:input type="text" id="inputOpponent" placeholder="Opponent" path="Opponent"/>
-                    </div>
-                </div>
-
-                <div class="control-group">
                     <label class="control-label" for="inputYards">Yards</label>
                     <div class="controls">
                         <form:input type="text" id="inputYards" placeholder="Yards" path="Yards"/>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label" for="inputDate">Date</label>
-                    <div class="controls">
-                        <form:input type="text" id="inputDate" placeholder="Date" path="Date"/>
                     </div>
                 </div>
 

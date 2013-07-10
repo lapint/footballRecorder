@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -30,7 +31,9 @@ public class PlaybookController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-    public ModelAndView addingplay(@ModelAttribute("Playbook")Play play){
+    public ModelAndView addingplay(@ModelAttribute("Playbook")Play play, Principal principal){
+        final String currentUser = principal.getName();
+        play.setUser_Id(currentUser);
 		ModelAndView modelAndView = new ModelAndView("add_play_form");
 		playbookService.addPlay(play);
         List<Play> plays = playbookService.getPlays();

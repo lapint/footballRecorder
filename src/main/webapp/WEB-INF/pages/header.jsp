@@ -18,13 +18,13 @@
             <div class="nav-collapse collapse">
                 <!-- .nav, .navbar-search, .navbar-form, etc -->
                 <ul class="nav nav-tabs">
-                    <li  id=""><a onclick="selectedNav()" href="#">Home</a></li>
-                    <li  id="recordPlayNav"><a href="${pageContext.request.contextPath}/playresult/add.html">Record Play</a></li>
+                    <li  id="gamesNav"><a href="${pageContext.request.contextPath}/game/create.html">Games</a></li>
+                    <li  id="recordPlayNav"><a href="${pageContext.request.contextPath}/game/playresult/add.html">Record Play</a></li>
                     <li  id="playbookNav"><a href="${pageContext.request.contextPath}/playbook/add.html">Add Play to Playbook</a></li>
                     <li  id="playersNav"><a href="${pageContext.request.contextPath}/players/add.html">Add Player</a></li>
+                    <li  id="logoutNav"><a href=<c:url value='/j_spring_security_logout'/>>Logout</a></li>
                 </ul>
             </div>
-            <a href=<c:url value='/j_spring_security_logout'/>>Logout</a><br/>
         </div>
     </div>
 </div>

@@ -1,0 +1,188 @@
+package com.springapp.mvc.footballStats.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="PlayerStats")
+public class PlayerStat {
+
+    @Id
+    private Integer Player_Id;
+
+    private Integer Sacks;
+    private Integer Carries;
+    private Integer Recs;
+    private Integer Ints;
+    private Integer Tackles;
+    private Integer ForcedFumbles;
+    private Integer Fumbles;
+    private Integer FGs;
+    private Integer XPs;
+    private Integer Comps;
+    private Integer PassYds;
+    private Integer RushYds;
+    private Integer RecYds;
+    private Integer TDs;
+    private String Opponent;
+    private String Date;
+    private String Name;
+
+    public String getUser_Id() {
+        return User_Id;
+    }
+
+    public void setUser_Id(String user_Id) {
+        User_Id = user_Id;
+    }
+
+    private String User_Id;
+
+    public Integer getRecs() {
+        return Recs;
+    }
+
+    public void setRecs(Integer recs) {
+        Recs = recs;
+    }
+
+    public Integer getPlayer_Id() {
+        return Player_Id;
+    }
+
+    public void setPlayer_Id(Integer player_Id) {
+        Player_Id = player_Id;
+    }
+
+    public Integer getSacks() {
+        return Sacks;
+    }
+
+    public void setSacks(Integer sacks) {
+        Sacks = sacks;
+    }
+
+    public Integer getCarries() {
+        return Carries;
+    }
+
+    public void setCarries(Integer carries) {
+        Carries = carries;
+    }
+
+    public Integer getInts() {
+        return Ints;
+    }
+
+    public void setInts(Integer ints) {
+        Ints = ints;
+    }
+
+    public Integer getTackles() {
+        return Tackles;
+    }
+
+    public void setTackles(Integer tackles) {
+        Tackles = tackles;
+    }
+
+    public Integer getForcedFumbles() {
+        return ForcedFumbles;
+    }
+
+    public void setForcedFumbles(Integer forcedFumbles) {
+        ForcedFumbles = forcedFumbles;
+    }
+
+    public Integer getFumbles() {
+        return Fumbles;
+    }
+
+    public void setFumbles(Integer fumbles) {
+        Fumbles = fumbles;
+    }
+
+    public Integer getFGs() {
+        return FGs;
+    }
+
+    public void setFGs(Integer FGs) {
+        this.FGs = FGs;
+    }
+
+    public Integer getXPs() {
+        return XPs;
+    }
+
+    public void setXPs(Integer XPs) {
+        this.XPs = XPs;
+    }
+
+    public Integer getComps() {
+        return Comps;
+    }
+
+    public void setComps(Integer comps) {
+        Comps = comps;
+    }
+
+    public Integer getPassYds() {
+        return PassYds;
+    }
+
+    public void setPassYds(Integer passYds) {
+        PassYds = passYds;
+    }
+
+    public Integer getRushYds() {
+        return RushYds;
+    }
+
+    public void setRushYds(Integer rushYds) {
+        RushYds = rushYds;
+    }
+
+    public Integer getRecYds() {
+        return RecYds;
+    }
+
+    public void setRecYds(Integer recYds) {
+        RecYds = recYds;
+    }
+
+    public Integer getTDs() {
+        return TDs;
+    }
+
+    public void setTDs(Integer TDs) {
+        this.TDs = TDs;
+    }
+
+    public String getOpponent() {
+        return Opponent;
+    }
+
+    public void setOpponent(String opponent) {
+        Opponent = opponent;
+    }
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+
+}

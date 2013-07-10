@@ -21,6 +21,17 @@ public class Player {
 	private String Year;
 	
 	private String Platoon;
+
+    public String getUser_Id() {
+        return User_Id;
+    }
+
+    public void setUser_Id(String user_Id) {
+        User_Id = user_Id;
+    }
+
+    private String User_Id;
+
 	
 	public Integer getId(){
 		return this.id;

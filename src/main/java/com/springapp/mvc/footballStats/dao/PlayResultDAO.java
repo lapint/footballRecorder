@@ -12,5 +12,5 @@ public interface PlayResultDAO {
 	public void updatePlayResult(PlayResult playResult);
 	public PlayResult getPlayResult(int id);
 	public void deletePlayResult(int id);
-	public List<PlayResult> getPlayResults();
+	public List<PlayResult> getPlayResults(Integer game_Id);
 }

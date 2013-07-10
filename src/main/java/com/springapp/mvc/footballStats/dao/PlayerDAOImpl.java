@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,7 +50,9 @@ public class PlayerDAOImpl implements PlayerDAO{
 
 	@SuppressWarnings("unchecked")
 	public List<Player> getPlayers() {
-		ArrayList<Player> players = (ArrayList<Player>) getCurrentSession().createQuery("from Player").list();
+        String user = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        ArrayList<Player> players = (ArrayList<Player>) getCurrentSession().createQuery("from Player p where p.User_Id ='" + user+"'").list();
 		return players;
 	}
 

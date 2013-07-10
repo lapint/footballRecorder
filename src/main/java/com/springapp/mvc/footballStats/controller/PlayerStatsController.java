@@ -1,26 +1,36 @@
 package com.springapp.mvc.footballStats.controller;
 
 import com.springapp.mvc.footballStats.model.Play;
-import com.springapp.mvc.footballStats.model.PlayResult;
-import com.springapp.mvc.footballStats.model.Player;
-import com.springapp.mvc.footballStats.service.PlayResultService;
+import com.springapp.mvc.footballStats.model.PlayerStat;
 import com.springapp.mvc.footballStats.service.PlaybookService;
-import com.springapp.mvc.footballStats.service.PlayerService;
+import com.springapp.mvc.footballStats.service.PlayerStatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
 
+@Controller
+@RequestMapping(value="/playerStats")
+public class PlayerStatsController {
 
-public class PlayResultController {
+    @Autowired
+	private PlayerStatsService playerStatsService;
+	
+	@RequestMapping(value="/list", method=RequestMethod.GET)
+	public ModelAndView addplayPage(){
+		ModelAndView modelAndView = new ModelAndView("playerStats");
+        List<PlayerStat> playerStats =  playerStatsService.getPlayerStats();
+        modelAndView.addObject("playerStats", playerStats);
+
+        return modelAndView;
+	}
+	
 
 
 }

@@ -78,8 +78,7 @@
 	</form:form>
  </div>
 <div class="table-results">
-<h1>List of Plays</h1>
-<p>Here you can see the list of the teams, edit them, remove or update.</p>
+<h1>Players</h1>
 <table class = "table table-hover" id="example"  cellpadding="0" cellspacing="0">
     <thead>
     <tr>
@@ -108,14 +107,81 @@
         </tr>
     </c:forEach>
     </tbody>
+    <tfoot>
+    <tr>
+        <td>
+            <input class="input-small search_init" type="text" name="id" value="Id"/>
+        </td>
+
+        <td>
+            <input class="input-small search_init" type="text" name="name" value="Name"/>
+        </td>
+        <td>
+            <input class="input-small search_init" type="text" name="number" value="Number"/>
+        </td>
+        <td>
+            <input class="input-small search_init" type="text" name="position" value="Position"/>
+        </td>
+        <td>
+            <input class="input-small search_init" type="text" name="year" value="Year"/>
+        </td>
+        <td>
+            <input class="input-small search_init" type="text" name="platoon" value="Platoon"/>
+        </td>
+        <td>
+            <input class="input-small search_init" type="text" name="action" value="Action"/>
+        </td>
+    </tr>
+    </tfoot>
 </table>
 <p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>
 </div>
 </div>
 </body>
 <script type="text/javascript">
-    document.getElementById("playersNav").setAttribute("class","active");
+    var asInitVals = new Array();
+
+    $(document).ready(function() {
+        var oTable = $('#example').dataTable( {
+            "oLanguage": {
+                "sSearch": ['Search all columns:']
+            }
+        });
+        document.getElementById("playersNav").setAttribute("class","active");
 
     $("#example").dataTable();
+    $("tfoot input").keyup( function () {
+        /* Filter on the column (the index) of this element */
+        oTable.fnFilter( this.value, $("tfoot input").index(this) );
+    } );
+
+    oTable.fnAdjustColumnSizing();
+
+    /*
+     * Support functions to provide a little bit of 'user friendlyness' to the textboxes in
+     * the footer
+     */
+    $("tfoot input").each( function (i) {
+        asInitVals[i] = this.value;
+    } );
+
+    $("tfoot input").focus( function () {
+        if ( this.className == "input-small search_init" )
+        {
+            this.className = "";
+            this.value = "";
+        }
+    } );
+
+    $("tfoot input").blur( function (i) {
+        if ( this.value == "" )
+        {
+            this.className = "input-small search_init";
+            this.value = asInitVals[$("tfoot input").index(this)];
+        }
+    } );
+    } );
+
+
 </script>
 </html>

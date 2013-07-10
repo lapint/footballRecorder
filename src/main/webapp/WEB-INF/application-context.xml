@@ -64,8 +64,9 @@
         <intercept-url pattern="/players/*" access="ROLE_USER" />
         <intercept-url pattern="/playbook/*" access="ROLE_USER" />
         <intercept-url pattern="/playresult/*" access="ROLE_USER" />
+        <intercept-url pattern="/user/*" access="ROLE_USER"/>
         <intercept-url pattern="/admin/*" access="ROLE_ADMIN" />
-        <form-login login-page="/login" default-target-url="/playresult/add"
+        <form-login login-page="/login" default-target-url="/game/create"
                     authentication-failure-url="/loginfailed" />
         <logout logout-success-url="/logout" />
 

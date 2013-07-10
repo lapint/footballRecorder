@@ -7,6 +7,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,7 +50,9 @@ public class PlaybookDAOImpl implements PlaybookDAO{
 
 	@SuppressWarnings("unchecked")
 	public List<Play> getPlays() {
-		return getCurrentSession().createQuery("from Play").list();
+        String user = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        return getCurrentSession().createQuery("from Play p where p.User_Id ='" + user+"'").list();
 	}
 
 	

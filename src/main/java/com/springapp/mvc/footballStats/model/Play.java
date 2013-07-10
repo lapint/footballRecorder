@@ -16,7 +16,16 @@ public class Play {
 	private String Name;
 	private String Type;
 	private String Platoon;
-	
+
+    public String getUser_Id() {
+        return User_Id;
+    }
+
+    public void setUser_Id(String user_Id) {
+        User_Id = user_Id;
+    }
+
+    private String User_Id;
 	public Integer getId(){
 		return this.id;
 	}
