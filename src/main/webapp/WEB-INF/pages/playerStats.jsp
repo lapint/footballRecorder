@@ -39,16 +39,16 @@
 <table class = "table table-hover" id="example"  cellpadding="0" cellspacing="0">
     <thead>
     <tr>
+        <th>Name</th>
         <th>Sacks</th>
         <th>Carries</th>
         <th>Comps</th>
-        <th>Date</th>
+        <%--<th>Date</th>--%>
         <th>FGs</th>
         <th>Forced Fumbles</th>
         <th>Fumbles</th>
         <th>Ints</th>
-        <th>Name</th>
-        <th>Opponent</th>
+        <%--<th>Opponent</th>--%>
         <th>Pass Yds</th>
         <th>Recs</th>
         <th>Rec Yds</th>
@@ -56,23 +56,21 @@
         <th>Tackles</th>
         <th>TDs</th>
         <th>XPs</th>
-        <th>Edit</th>
-
     </tr>
     </thead>
     <tbody>
     <c:forEach var="playerStat" items="${playerStats}">
         <tr>
+            <td>${playerStat.name}</td>
             <td>${playerStat.sacks}</td>
             <td>${playerStat.carries}</td>
             <td>${playerStat.comps}</td>
-            <td>${playerStat.date}</td>
+            <%--<td>${playerStat.dataTables}</td>--%>
             <td>${playerStat.FGs}</td>
             <td>${playerStat.forcedFumbles}</td>
             <td>${playerStat.fumbles}</td>
             <td>${playerStat.ints}</td>
-            <td>${playerStat.name}</td>
-            <td>${playerStat.opponent}</td>
+            <%--<td>${playerStat.opponent}</td>--%>
             <td>${playerStat.passYds}</td>
             <td>${playerStat.recs}</td>
             <td>${playerStat.recYds}</td>
@@ -80,11 +78,6 @@
             <td>${playerStat.tackles}</td>
             <td>${playerStat.TDs}</td>
             <td>${playerStat.XPs}</td>
-
-            <td>
-                <a href="${pageContext.request.contextPath}/players/edit/${playerStat.id}.html">Edit</a><br>
-                <a href="${pageContext.request.contextPath}/players/delete/${playerStat.id}.html">Delete</a><br>
-            </td>
         </tr>
     </c:forEach>
     </tbody>
@@ -94,7 +87,7 @@
 </div>
 </body>
 <script type="text/javascript">
-    document.getElementById("playersNav").setAttribute("class","active");
+    document.getElementById("playerStatsNav").setAttribute("class","active");
 
     $("#example").dataTable();
 </script>

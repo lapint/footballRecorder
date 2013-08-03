@@ -1,7 +1,9 @@
 package com.springapp.mvc.footballStats.controller;
 
 import com.springapp.mvc.footballStats.model.Player;
+import com.springapp.mvc.footballStats.model.PlayerStat;
 import com.springapp.mvc.footballStats.service.PlayerService;
+import com.springapp.mvc.footballStats.service.PlayerStatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -19,6 +22,10 @@ public class PlayerController {
 
     @Autowired
 	private PlayerService playerService;
+
+    @Autowired
+    private PlayerStatsService playerStatsService;
+
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public ModelAndView addPlayerPage(){
@@ -37,6 +44,28 @@ public class PlayerController {
         player.setUser_Id(currentUser);
 		ModelAndView modelAndView = new ModelAndView("add_player_form");
 		playerService.addPlayer(player);
+        PlayerStat playerStat = new PlayerStat();
+        playerStat.setName(player.getName());
+        playerStat.setUser_Id(currentUser);
+        playerStat.setPlayer_Id(player.getId());
+        playerStat.setCarries(0);
+        playerStat.setTDs(0);
+        playerStat.setComps(0);
+        playerStat.setFGs(0);
+        playerStat.setForcedFumbles(0);
+        playerStat.setFumbles(0);
+        playerStat.setInts(0);
+        playerStat.setPassYds(0);
+        playerStat.setRushYds(0);
+        playerStat.setRecYds(0);
+        playerStat.setRecs(0);
+        playerStat.setSacks(0);
+        playerStat.setXPs(0);
+        playerStat.setTackles(0);
+        Date date = new Date();
+
+        playerStat.setDate(date.toString());
+        playerStatsService.addPlayer(playerStat);
         List<Player> players = playerService.getPlayers();
         modelAndView.addObject("player", new Player());
         modelAndView.addObject("players", players);

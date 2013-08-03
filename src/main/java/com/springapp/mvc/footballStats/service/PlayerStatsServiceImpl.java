@@ -25,6 +25,11 @@ public class PlayerStatsServiceImpl implements PlayerStatsService{
 
     @Override
     public void updatePlayer(int player_id, PlayResult playResult){
-        playerStatDAO.updatePlayer(player_id);
+        playerStatDAO.updatePlayer(player_id, playResult);
+    }
+
+    @Override
+    public void addPlayer(PlayerStat playerStat){
+        playerStatDAO.addPlayer(playerStat);
     }
 }

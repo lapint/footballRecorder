@@ -12,20 +12,20 @@ public class PlayerStat {
     @Id
     private Integer Player_Id;
 
-    private Integer Sacks;
-    private Integer Carries;
-    private Integer Recs;
-    private Integer Ints;
-    private Integer Tackles;
-    private Integer ForcedFumbles;
-    private Integer Fumbles;
-    private Integer FGs;
-    private Integer XPs;
-    private Integer Comps;
-    private Integer PassYds;
-    private Integer RushYds;
-    private Integer RecYds;
-    private Integer TDs;
+    private Integer Sacks=0;
+    private Integer Carries=0;
+    private Integer Recs=0;
+    private Integer Ints=0;
+    private Integer Tackles=0;
+    private Integer ForcedFumbles=0;
+    private Integer Fumbles=0;
+    private Integer FGs=0;
+    private Integer XPs=0;
+    private Integer Comps=0;
+    private Integer PassYds=0;
+    private Integer RushYds=0;
+    private Integer RecYds=0;
+    private Integer TDs=0;
     private String Opponent;
     private String Date;
     private String Name;

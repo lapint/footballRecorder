@@ -15,4 +15,5 @@ import java.util.List;
 public interface PlayerStatsService {
     public List<PlayerStat> getPlayerStats();
     public void updatePlayer(int player_id, PlayResult playResult);
+    public void addPlayer(PlayerStat playerStat);
 }

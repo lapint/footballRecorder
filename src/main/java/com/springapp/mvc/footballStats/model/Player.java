@@ -22,6 +22,10 @@ public class Player {
 	
 	private String Platoon;
 
+    public String getLabel(){
+        return Number + Name;
+    }
+
     public String getUser_Id() {
         return User_Id;
     }

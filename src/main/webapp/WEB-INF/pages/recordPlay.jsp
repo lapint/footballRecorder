@@ -1,7 +1,11 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+     pageEncoding="ISO-8859-1"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -32,21 +36,26 @@
                 <button class="btn" id="kickOffInputs" onClick="kickoffInsert()">Kickoff</button>
             </div>
 
-            <form:form method="POST" commandName="playresult" id="offenseInsertTable" style="display:none;">
+            <form:form method="POST" action="${pageContext.request.contextPath}/game/playresult/add.html" commandName="playresult" id="offenseInsertTable">
                 <div class="control-group">
                     <label class="control-label" for="inputPlay">Play</label>
                     <div class="controls">
-                        <form:select path="Play" id="inputPlay">
-                            <form:options items="${plays}" itemValue="Name" itemLabel="Name"/>
+                        <form:select path="Play_Id" id="inputPlay">
+                            <c:forEach var="play" items="${plays}">
+                                <option value="${play.id}" label="${play.name}  -  ${play.type}"/>
+                            </c:forEach>
                         </form:select>
+
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputPlayer">Carrier</label>
                     <div class="controls">
-                        <form:select path="Carrier" id="inputPlayer">
-                            <form:options items="${players}" itemValue="Name" itemLabel="Name"/>
+                        <form:select path="Carrier_Id" id="inputPlayer">
+                            <c:forEach var="player" items="${players}" >
+                                <option value="${player.id}" label="${player.number}  -  ${player.name}  -  ${player.position}"/>
+                            </c:forEach>
                         </form:select>
                     </div>
                 </div>
@@ -88,26 +97,11 @@
 
                 <div class="control-group">
                     <div class="controls">
-                        <form:button type="submit" class="btn">Add Play Result</form:button>
+                        <button name="action" type="submit" class="btn">Add Play Result</button>
                     </div>
                 </div>
 
             </form:form>
-
-            <form id="offenseInsertTable" style="display:none;">
-                <table style="color:white;">
-                    <tr>
-                        <td><input path="YTG" /></td>
-                        <td><input path="Down"/></td>
-                        <td></td>
-                        <td><form:select path="players">
-                            <form:options items="${players}" itemValue="Name" itemLabel="Name"/>
-
-                        </form:select></td>
-                        <td><input type="submit" value="Add"/></td>
-                    </tr>
-                </table>
-            </form>
 
             <form id="defenseInsertTable" style="display:none;">
                 <input type="hidden" name="football" value="football"/>
@@ -213,8 +207,8 @@
                             <td>${play.yards}</td>
                             <td>${play.YTG}</td>
                             <td>
-                                <a href="${pageContext.request.contextPath}/play/edit/${play.id}.html">Edit</a><br>
-                                <a href="${pageContext.request.contextPath}/play/delete/${play.id}.html">Delete</a><br>
+                                <a href="${pageContext.request.contextPath}/play/edit/${play.id}">Edit</a><br>
+                                <a href="${pageContext.request.contextPath}/game/playresult/delete/${play.id}">Delete</a><br>
                             </td>
                         </tr>
                     </c:forEach>

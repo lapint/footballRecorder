@@ -8,6 +8,8 @@ import com.springapp.mvc.footballStats.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +20,6 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
-@RequestMapping(value="/game")
 public class GameController {
 
     @Autowired
@@ -33,7 +34,7 @@ public class GameController {
     private PlayerStatsService playerStatsService;
 
     private Game game;
-    @RequestMapping(value="/create", method=RequestMethod.GET)
+    @RequestMapping(value="/game/create", method=RequestMethod.GET)
     public ModelAndView addGamePage(){
         ModelAndView modelAndView = new ModelAndView("createGame");
         modelAndView.addObject("game", new Game());
@@ -43,7 +44,7 @@ public class GameController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/game/edit/{id}", method=RequestMethod.GET)
     public ModelAndView updateGame(@PathVariable Integer id, Principal principal){
         final String currentUser = principal.getName();
         ModelAndView modelAndView = new ModelAndView("redirect:/game/playresult/add");
@@ -55,7 +56,7 @@ public class GameController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/create", method=RequestMethod.POST)
+    @RequestMapping(value="/game/create", method=RequestMethod.POST)
     public ModelAndView addGame(@ModelAttribute("Game")Game game, Principal principal){
         final String currentUser = principal.getName();
         game.setUser_Id(currentUser);
@@ -70,15 +71,14 @@ public class GameController {
     }
 
 
-    @RequestMapping(value="/playresult/add", method=RequestMethod.GET)
-    public ModelAndView addplayPage(){
+    @RequestMapping(value="/game/playresult/add", method=RequestMethod.GET)
+    public ModelAndView addPlayResultPage(){
         if(game.getId()==null){
             ModelAndView modelAndView = new ModelAndView("redirect:game/create");
             return modelAndView;
         }
         List<Player> players = playerService.getPlayers();
         List<Play> plays = playbookService.getPlays();
-
         ModelAndView modelAndView = new ModelAndView("recordPlay");
         List<PlayResult> playResults = playResultService.getPlayResults(game.getId());
         modelAndView.addObject("playresult", new PlayResult());
@@ -89,18 +89,25 @@ public class GameController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/playresult/add", method=RequestMethod.POST)
+    @RequestMapping(value="/game/playresult/add", method=RequestMethod.POST)
     @Transactional
-    public ModelAndView addingplayResult(@ModelAttribute("playresult") PlayResult playResult, Principal principal){
+    public ModelAndView addPlayResult(@ModelAttribute("playresult") PlayResult playResult, BindingResult result, Principal principal){
         final String currentUser = principal.getName();
         playResult.setUser_Id(currentUser);
         playResult.setGame_Id(game.getId());
         playResult.setOpponent(game.getOpponent());
         playResult.setDate(game.getDate());
-        playResultService.addPlayResult(playResult);
-        playerStatsService.updatePlayer(playResult.getCarrier_Id(), playResult);
+
         List<Player> players = playerService.getPlayers();
         List<Play> plays = playbookService.getPlays();
+        System.out.println(playResult.getPlay_Id());
+
+        playResult.setCarrier(playerService.getPlayer(playResult.getCarrier_Id()).getName());
+        playResult.setPlay_Type(playbookService.getPlay(playResult.getPlay_Id()).getType());
+        playResult.setPlay(playbookService.getPlay(playResult.getPlay_Id()).getName());
+        playResultService.addPlayResult(playResult);
+        playerStatsService.updatePlayer(playResult.getCarrier_Id(), playResult);
+
         ModelAndView modelAndView = new ModelAndView("recordPlay");
         List<PlayResult> playResults = playResultService.getPlayResults(game.getId());
         modelAndView.addObject("playresult", new PlayResult());
@@ -111,9 +118,7 @@ public class GameController {
         return modelAndView;
     }
 
-
-
-    @RequestMapping(value="/playresult/list")
+    @RequestMapping(value="/game/playresult/list")
     public ModelAndView listOfplays() {
         ModelAndView modelAndView = new ModelAndView("list-of-playResults");
 
@@ -125,7 +130,7 @@ public class GameController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/playresult/edit/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/game/playresult/edit/{id}", method=RequestMethod.GET)
     public ModelAndView editplayPage(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView("edit-play-form");
         PlayResult playResult = playResultService.getPlayResult(id);
@@ -133,9 +138,8 @@ public class GameController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/playresult/edit/{id}", method=RequestMethod.POST)
+    @RequestMapping(value="/game/playresult/edit/{id}", method=RequestMethod.POST)
     public ModelAndView editingplay(@ModelAttribute PlayResult playResult, @PathVariable Integer id) {
-
 
         ModelAndView modelAndView = new ModelAndView("login");
 
@@ -149,7 +153,7 @@ public class GameController {
 
     @RequestMapping(value="/playresult/delete/{id}", method=RequestMethod.GET)
     public ModelAndView deleteplay(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("login");
+        ModelAndView modelAndView = new ModelAndView("recordPlay");
         playResultService.deletePlayResult(id);
         List<Player> players = playerService.getPlayers();
         List<Play> plays = playbookService.getPlays();

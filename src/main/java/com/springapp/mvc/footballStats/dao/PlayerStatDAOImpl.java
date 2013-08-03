@@ -1,6 +1,7 @@
 package com.springapp.mvc.footballStats.dao;
 
 
+import com.springapp.mvc.footballStats.model.PlayResult;
 import com.springapp.mvc.footballStats.model.Player;
 import com.springapp.mvc.footballStats.model.PlayerStat;
 import org.hibernate.Session;
@@ -10,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -31,8 +33,74 @@ public class PlayerStatDAOImpl implements PlayerStatDAO{
 	}
 
     @Override
-    public void updatePlayer(int player_id) {
-        getCurrentSession().createQuery("from PlayerStat ps where ps.User_Id="+player_id);
+    public void updatePlayer(int player_id, PlayResult playResult) {
+        List<PlayerStat> playerStats = getCurrentSession().createQuery("from PlayerStat ps where ps.Player_Id="+player_id).list();
+        if(playerStats.size()>0){
+            PlayerStat playerStat = playerStats.get(0);
+
+            if(playResult.getPlay_Type().equals("Pass")){
+                if(playerStat.getRecYds()!=null){
+                    playerStat.setRecYds(playResult.getYards()+playerStat.getRecYds());
+                    playerStat.setRecs(playerStat.getRecs() + 1);
+                }else{
+                    playerStat.setRecYds(playResult.getYards());
+                    playerStat.setRecs(1);
+                }
+            }
+            else if(playResult.getPlay_Type().equals("Run")){
+                playerStat.setRecYds(playResult.getYards()+playerStat.getRushYds());
+            }
+            if(playResult.getResult().equals("TD")){
+                if(playerStat.getTDs()!=null)
+                playerStat.setTDs(playerStat.getTDs()+1);
+                else{
+                    playerStat.setTDs(1);
+                }
+            }
+            playerStat.setOpponent(playResult.getOpponent());
+            playerStat.setDate(playResult.getDate());
+            getCurrentSession().save(playerStat);
+        }
+        else{
+            PlayerStat playerStat = new PlayerStat();
+            playerStat.setName(playResult.getCarrier());
+            playerStat.setUser_Id(playResult.getUser_Id());
+            Date date = new Date();
+
+            playerStat.setDate(date.toString());
+            playerStat.setPlayer_Id(playResult.getCarrier_Id());
+            if(playResult.getPlay_Type().equals("Pass")){
+                if(playerStat.getRecYds()!=null){
+                    playerStat.setRecYds(playResult.getYards()+playerStat.getRecYds());
+                    playerStat.setRecs(playerStat.getRecs() + 1);
+                }else{
+                    playerStat.setRecYds(playResult.getYards());
+                    playerStat.setRecs(1);
+                }
+            }
+            else if(playResult.getPlay_Type().equals("Run")){
+                playerStat.setRecYds(playResult.getYards()+playerStat.getRushYds());
+            }
+            if(playResult.getResult().equals("TD")){
+                if(playerStat.getTDs()!=null)
+                    playerStat.setTDs(playerStat.getTDs()+1);
+                else{
+                    playerStat.setTDs(1);
+                }
+            }
+            playerStat.setOpponent(playResult.getOpponent());
+            playerStat.setDate(playResult.getDate());
+            getCurrentSession().save(playerStat);
+        }
+//
+//  playerStat.setPassYds();
+
+
+    }
+
+    @Override
+    public void addPlayer(PlayerStat playerStat) {
+        getCurrentSession().save(playerStat);
     }
 
 }

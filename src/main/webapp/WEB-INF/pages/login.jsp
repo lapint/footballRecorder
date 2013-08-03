@@ -4,11 +4,11 @@
     <title>Login Page</title>
     <script src="<c:url value="/resources/js/jquery.js" />" type="text/javascript"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+    <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
     <script src="<c:url value="/resources/js/jquery-ui-1.10.3.custom.min.js" />" type="text/javascript" ></script>
     <script src="<c:url value="/resources/js/jquery.dataTables.min.js" />" type="text/javascript"></script>
     <link href="<c:url value="/resources/css/jquery.dataTables.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/jquery.dataTables_themeroller.css"/>" rel="stylesheet">
-    <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/site.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/jquery-ui-1.10.3.custom.min.css"/>" rel="stylesheet">
 
@@ -31,15 +31,13 @@
     </div>
 </c:if>
 
-
-
 <div>
 
     <div class="LoginNavbar navbar">
         <div class="title">
             Football Team Manager
         </div>
-        <div class="navbar-inner login-navbar-inner">
+        <div class="login-navbar-inner">
             <div class="container login-container">
 
                 <!-- .btn-navbar is used as the toggle for collapsed navbar content -->

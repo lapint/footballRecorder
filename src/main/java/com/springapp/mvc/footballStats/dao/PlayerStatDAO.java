@@ -1,5 +1,6 @@
 package com.springapp.mvc.footballStats.dao;
 
+import com.springapp.mvc.footballStats.model.PlayResult;
 import com.springapp.mvc.footballStats.model.PlayerStat;
 
 import java.util.List;
@@ -13,5 +14,6 @@ import java.util.List;
  */
 public interface PlayerStatDAO {
     public List<PlayerStat> getPlayerStats();
-    public void updatePlayer(int player_id);
+    public void updatePlayer(int player_id, PlayResult playResult);
+    public void addPlayer(PlayerStat playerStat);
 }

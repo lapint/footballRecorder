@@ -36,7 +36,7 @@ public class PlayResultDAOImpl implements PlayResultDAO{
 	}
 
 	public PlayResult getPlayResult(int id) {
-		PlayResult playResult = (PlayResult) getCurrentSession().get(PlayResult.class, id);
+		PlayResult playResult = (PlayResult) getCurrentSession().createQuery("from PlayResult pr where pr.id=" + id).list().get(0);
 		return playResult;
 	}
 

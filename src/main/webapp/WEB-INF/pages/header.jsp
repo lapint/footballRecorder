@@ -22,6 +22,7 @@
                     <li  id="recordPlayNav"><a href="${pageContext.request.contextPath}/game/playresult/add.html">Record Play</a></li>
                     <li  id="playbookNav"><a href="${pageContext.request.contextPath}/playbook/add.html">Add Play to Playbook</a></li>
                     <li  id="playersNav"><a href="${pageContext.request.contextPath}/players/add.html">Add Player</a></li>
+                    <li  id="playerStatsNav"><a href="${pageContext.request.contextPath}/../playerStats/list.html">Player Stats</a></li>
                     <li  id="logoutNav"><a href=<c:url value='/j_spring_security_logout'/>>Logout</a></li>
                 </ul>
             </div>

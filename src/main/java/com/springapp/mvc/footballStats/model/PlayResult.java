@@ -23,6 +23,10 @@ public class PlayResult {
     private String Date;
 
 	private String Play;
+
+    private Integer Play_Id;
+
+    private String Play_Type;
 	
 	private String Carrier;
 
@@ -37,6 +41,22 @@ public class PlayResult {
     private Integer Down;
 
     private String Tackler;
+
+    public Integer getPlay_Id() {
+        return Play_Id;
+    }
+
+    public void setPlay_Id(Integer play_Id) {
+        Play_Id = play_Id;
+    }
+
+    public String getPlay_Type() {
+        return Play_Type;
+    }
+
+    public void setPlay_Type(String play_Type) {
+        Play_Type = play_Type;
+    }
 
     public Integer getCarrier_Id() {
         return Carrier_Id;
