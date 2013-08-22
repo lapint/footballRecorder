@@ -26,7 +26,7 @@
     <link href="<c:url value="/resources/css/jquery.dataTables_themeroller.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/site.css" />" rel="stylesheet">
-    <link href="<c:url value="/resources/css/jquery-ui-1.10.3.custom.min.css"/>" rel="stylesheet">
+    <link href="<c:url value="/resources/css/smoothness/jquery-ui-1.10.3.custom.min.css"/>" rel="stylesheet">
 
 </head>
 <body>
@@ -35,7 +35,7 @@
 
     <div class="add">
         <h1>Create New Game</h1>
-        <p>Here you can add a new player.</p>
+        <p>Create a new game to get started!</p>
 
         <form:form method="POST" commandName="game"
                    action="${pageContext.request.contextPath}/game/create.html">
@@ -77,42 +77,49 @@
             </div>
         </form:form>
     </div>
-    <div class="table-results">
-        <h1>Game History</h1>
-        <table class = "table table-hover" id="example"  cellpadding="0" cellspacing="0">
-            <thead>
-            <tr>
-                <th>Opponent</th>
-                <th>Date</th>
-                <th>Field Type</th>
-                <th>Location</th>
-                <th>Weather</th>
-                <th>Options</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="game" items="${games}">
+    <div class="gamesTable">
+        <div class="table-results">
+            <%--<h1>Game History</h1>--%>
+            <table class = "table table-hover" id="example"  cellpadding="0" cellspacing="0">
+                <thead>
                 <tr>
-                    <td>${game.opponent}</td>
-                    <td>${game.date}</td>
-                    <td>${game.fieldType}</td>
-                    <td>${game.location}</td>
-                    <td>${game.weather}</td>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/game/edit/${game.id}.html">Edit</a><br>
-                        <a href="${pageContext.request.contextPath}/game/delete/${game.id}.html">Delete</a><br>
-                    </td>
+                    <th>Opponent</th>
+                    <th>Date</th>
+                    <th>Field Type</th>
+                    <th>Location</th>
+                    <th>Weather</th>
+                    <th>Options</th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-        <p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>
+                </thead>
+                <tbody>
+                <c:forEach var="game" items="${games}">
+                    <tr>
+                        <td>${game.opponent}</td>
+                        <td>${game.date}</td>
+                        <td>${game.fieldType}</td>
+                        <td>${game.location}</td>
+                        <td>${game.weather}</td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/game/edit/${game.id}.html">Edit</a><br>
+                            <a href="${pageContext.request.contextPath}/game/delete/${game.id}.html">Delete</a><br>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>
+        </div>
     </div>
 </div>
 </body>
 <script type="text/javascript">
 //    document.getElementById("playersNav").setAttribute("class","active");
 
-    $("#example").dataTable();
+$(document).ready(function() {
+    oTable = $('#example').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+    });
+} );
 </script>
 </html>

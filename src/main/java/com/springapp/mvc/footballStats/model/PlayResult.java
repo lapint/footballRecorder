@@ -42,6 +42,18 @@ public class PlayResult {
 
     private String Tackler;
 
+    private Integer YardLine;
+
+    public Integer getYardLine() {
+        return YardLine;
+    }
+
+    public void setYardLine(Integer yardLine) {
+        YardLine = yardLine;
+    }
+
+
+
     public Integer getPlay_Id() {
         return Play_Id;
     }

@@ -36,4 +36,9 @@ public class GameServiceImpl implements  GameService {
     public Game getGame(Integer id) {
         return gameDAO.getGame(id);
     }
+
+    @Override
+    public void deleteGame(Integer id) {
+        gameDAO.deleteGame(id);
+    }
 }

@@ -2,6 +2,7 @@ package com.springapp.mvc.footballStats.controller;
 
 import com.springapp.mvc.footballStats.model.Play;
 import com.springapp.mvc.footballStats.model.PlayerStat;
+import com.springapp.mvc.footballStats.service.GameService;
 import com.springapp.mvc.footballStats.service.PlaybookService;
 import com.springapp.mvc.footballStats.service.PlayerStatsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,13 @@ public class PlayerStatsController {
 
     @Autowired
 	private PlayerStatsService playerStatsService;
-	
+	@Autowired
+    private GameService gameService;
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public ModelAndView addplayPage(){
+	public ModelAndView addplayPage(Principal principal){
+        if(principal==null){
+            return new ModelAndView("login");
+        }
 		ModelAndView modelAndView = new ModelAndView("playerStats");
         List<PlayerStat> playerStats =  playerStatsService.getPlayerStats();
         modelAndView.addObject("playerStats", playerStats);

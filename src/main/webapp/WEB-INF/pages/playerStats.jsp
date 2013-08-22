@@ -20,75 +20,161 @@
 	<%--src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>--%>
     <script src="<c:url value="/resources/js/jquery.js" />" type="text/javascript"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-   <script src="<c:url value="/resources/js/jquery-ui-1.10.3.custom.min.js" />" type="text/javascript" ></script>
+    <script src="<c:url value="/resources/js/jquery-ui-1.10.3.custom.min.js" />" type="text/javascript" ></script>
     <script src="<c:url value="/resources/js/jquery.dataTables.min.js" />" type="text/javascript"></script>
     <link href="<c:url value="/resources/css/jquery.dataTables.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/jquery.dataTables_themeroller.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/smoothness/jquery-ui-1.10.3.custom.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/site.css" />" rel="stylesheet">
-    <link href="<c:url value="/resources/css/jquery-ui-1.10.3.custom.min.css"/>" rel="stylesheet">
-
 </head>
 <body>
     <jsp:include page="header.jsp" />
-<div class="wrapper">
+    <div class="wrapper">
 
-
-<div class="table-results">
-<h1>Player Stats</h1>
-<table class = "table table-hover" id="example"  cellpadding="0" cellspacing="0">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Sacks</th>
-        <th>Carries</th>
-        <th>Comps</th>
-        <%--<th>Date</th>--%>
-        <th>FGs</th>
-        <th>Forced Fumbles</th>
-        <th>Fumbles</th>
-        <th>Ints</th>
-        <%--<th>Opponent</th>--%>
-        <th>Pass Yds</th>
-        <th>Recs</th>
-        <th>Rec Yds</th>
-        <th>Rush Yds</th>
-        <th>Tackles</th>
-        <th>TDs</th>
-        <th>XPs</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="playerStat" items="${playerStats}">
-        <tr>
-            <td>${playerStat.name}</td>
-            <td>${playerStat.sacks}</td>
-            <td>${playerStat.carries}</td>
-            <td>${playerStat.comps}</td>
-            <%--<td>${playerStat.dataTables}</td>--%>
-            <td>${playerStat.FGs}</td>
-            <td>${playerStat.forcedFumbles}</td>
-            <td>${playerStat.fumbles}</td>
-            <td>${playerStat.ints}</td>
-            <%--<td>${playerStat.opponent}</td>--%>
-            <td>${playerStat.passYds}</td>
-            <td>${playerStat.recs}</td>
-            <td>${playerStat.recYds}</td>
-            <td>${playerStat.rushYds}</td>
-            <td>${playerStat.tackles}</td>
-            <td>${playerStat.TDs}</td>
-            <td>${playerStat.XPs}</td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
-<p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>
-</div>
-</div>
+        <div class="playerStatsTable">
+            <div class="playerStatResults">
+                <%--<h1>Player Stats</h1>--%>
+                <table class = "table table-hover" id="example"  cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Sacks</th>
+                        <th>Carries</th>
+                        <th>Comps</th>
+                        <%--<th>Date</th>--%>
+                        <th>FGs</th>
+                        <th>Forced Fumbles</th>
+                        <th>Fumbles</th>
+                        <th>Ints</th>
+                        <%--<th>Opponent</th>--%>
+                        <th>Pass Yds</th>
+                        <th>Recs</th>
+                        <th>Rec Yds</th>
+                        <th>Rush Yds</th>
+                        <th>Tackles</th>
+                        <th>TDs</th>
+                        <th>XPs</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="playerStat" items="${playerStats}">
+                        <tr>
+                            <td>${playerStat.name}</td>
+                            <td>${playerStat.sacks}</td>
+                            <td>${playerStat.carries}</td>
+                            <td>${playerStat.comps}</td>
+                            <%--<td>${playerStat.dataTables}</td>--%>
+                            <td>${playerStat.FGs}</td>
+                            <td>${playerStat.forcedFumbles}</td>
+                            <td>${playerStat.fumbles}</td>
+                            <td>${playerStat.ints}</td>
+                            <%--<td>${playerStat.opponent}</td>--%>
+                            <td>${playerStat.passYds}</td>
+                            <td>${playerStat.recs}</td>
+                            <td>${playerStat.recYds}</td>
+                            <td>${playerStat.rushYds}</td>
+                            <td>${playerStat.tackles}</td>
+                            <td>${playerStat.TDs}</td>
+                            <td>${playerStat.XPs}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td>
+                            <input class="input-small search_init" type="text" name="name" value="Name"/>
+                        </td>
+                        <td>
+                            <input class="input-small search_init" type="text" name="sacks" value="Sacks"/>
+                        </td>
+                        <td>
+                            <input class="input-small search_init" type="text" name="carries" value="Carries"/>
+                        </td>
+                        <td>
+                            <input class="input-small search_init" type="text" name="comps" value="Comps"/>
+                        </td>
+                        <td>
+                            <input class="input-small search_init" type="text" name="FGs" value="FGs"/>
+                        </td>
+                        <td>
+                            <input class="input-small search_init" type="text" name="forcedFumbles" value="forcedFumbles"/>
+                        </td>
+                        <td>
+                            <input class="input-small search_init" type="text" name="fumbles" value="Fumbles"/>
+                        </td>
+                        <td>
+                            <input class="input-small search_init" type="text" name="ints" value="Ints"/>
+                        </td>
+                        <td>
+                            <input class="input-small search_init" type="text" name="passYds" value="Pass Yards"/>
+                        </td>
+                        <td>
+                            <input class="input-small search_init" type="text" name="recs" value="Recs"/>
+                        </td>
+                        <td>
+                            <input class="input-small search_init" type="text" name="recYds" value="Rec Yds"/>
+                        </td>
+                        <td>
+                            <input class="input-small search_init" type="text" name="rushYds" value="Rush Yds"/>
+                        </td>
+                        <td>
+                            <input class="input-small search_init" type="text" name="tackles" value="Tackles"/>
+                        </td>
+                        <td>
+                            <input class="input-small search_init" type="text" name="TDs" value="TDs"/>
+                        </td>
+                        <td>
+                            <input class="input-small search_init" type="text" name="XPs" value="XPs"/>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+                <p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>
+            </div>
+        </div>
+    </div>
 </body>
 <script type="text/javascript">
-    document.getElementById("playerStatsNav").setAttribute("class","active");
+    var asInitVals = new Array();
 
-    $("#example").dataTable();
+    $(document).ready(function() {
+        var oTable = $('#example').dataTable( {
+            "bJQueryUI": true,
+            "oLanguage": {
+                "sSearch": ['Search all columns:']
+            }
+        });
+    $("tfoot input").keyup( function () {
+        /* Filter on the column (the index) of this element */
+        oTable.fnFilter( this.value, $("tfoot input").index(this) );
+    } );
+
+    oTable.fnAdjustColumnSizing();
+
+    /*
+     * Support functions to provide a little bit of 'user friendlyness' to the textboxes in
+     * the footer
+     */
+    $("tfoot input").each( function (i) {
+        asInitVals[i] = this.value;
+    } );
+
+    $("tfoot input").focus( function () {
+        if ( this.className == "input-small search_init" )
+        {
+            this.className = "";
+            this.value = "";
+        }
+    } );
+
+    $("tfoot input").blur( function (i) {
+        if ( this.value == "" )
+        {
+            this.className = "input-small search_init";
+            this.value = asInitVals[$("tfoot input").index(this)];
+        }
+    } );
+    } );
 </script>
 </html>

@@ -21,7 +21,10 @@ public class PlaybookController {
 	private PlaybookService playbookService;
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
-	public ModelAndView addplayPage(){
+	public ModelAndView addplayPage(Principal principal){
+        if(principal==null){
+            return new ModelAndView("login");
+        }
 		ModelAndView modelAndView = new ModelAndView("add_play_form");
 		modelAndView.addObject("play", new Play());
         List<Play> plays = playbookService.getPlays();
@@ -32,6 +35,9 @@ public class PlaybookController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
     public ModelAndView addingplay(@ModelAttribute("Playbook")Play play, Principal principal){
+        if(principal==null){
+            return new ModelAndView("login");
+        }
         final String currentUser = principal.getName();
         play.setUser_Id(currentUser);
 		ModelAndView modelAndView = new ModelAndView("add_play_form");
@@ -46,7 +52,10 @@ public class PlaybookController {
 	}
 	
 	@RequestMapping(value="/list")  
-    public ModelAndView listOfplays() {  
+    public ModelAndView listOfplays(Principal principal) {
+        if(principal==null){
+            return new ModelAndView("login");
+        }
         ModelAndView modelAndView = new ModelAndView("list-of-plays");  
         List<Play> plays = playbookService.getPlays();
         modelAndView.addObject("plays", plays);
@@ -55,16 +64,21 @@ public class PlaybookController {
     }
 	
 	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)  
-    public ModelAndView editplayPage(@PathVariable Integer id) {  
-        ModelAndView modelAndView = new ModelAndView("edit-play-form");  
+    public ModelAndView editplayPage(@PathVariable Integer id, Principal principal) {
+        if(principal==null){
+            return new ModelAndView("login");
+        }
+        ModelAndView modelAndView = new ModelAndView("edit-play-form");
         Play play = playbookService.getPlay(id);  
         modelAndView.addObject("play",play);  
         return modelAndView;  
     }  
       
     @RequestMapping(value="/edit/{id}", method=RequestMethod.POST)  
-    public ModelAndView editingplay(@ModelAttribute Play play, @PathVariable Integer id) {  
-          
+    public ModelAndView editingplay(@ModelAttribute Play play, @PathVariable Integer id, Principal principal) {
+        if(principal==null){
+            return new ModelAndView("login");
+        }
         ModelAndView modelAndView = new ModelAndView("login");
           
         playbookService.updatePlay(play);  
@@ -76,7 +90,10 @@ public class PlaybookController {
     }  
       
     @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)  
-    public ModelAndView deleteplay(@PathVariable Integer id) {  
+    public ModelAndView deleteplay(@PathVariable Integer id, Principal principal) {
+        if(principal==null){
+            return new ModelAndView("login");
+        }
         ModelAndView modelAndView = new ModelAndView("add_play_form");
         playbookService.deletePlay(id);
         modelAndView.addObject("play", new Play());

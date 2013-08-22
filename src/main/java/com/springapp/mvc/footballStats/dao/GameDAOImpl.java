@@ -44,4 +44,10 @@ public class GameDAOImpl implements GameDAO {
 
         return (Game) getCurrentSession().createQuery("from Game g where g.User_Id ='" + user+"' AND g.id="+id).list().get(0);
     }
+
+    @Override
+    public void deleteGame(Integer id) {
+        Game game = getGame(id);
+        getCurrentSession().delete(game);
+    }
 }

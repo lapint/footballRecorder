@@ -28,7 +28,10 @@ public class PlayerController {
 
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
-	public ModelAndView addPlayerPage(){
+	public ModelAndView addPlayerPage(Principal principal){
+        if(principal==null){
+            return new ModelAndView("login");
+        }
 
 		ModelAndView modelAndView = new ModelAndView("add_player_form");
         List<Player> players = playerService.getPlayers();
@@ -40,6 +43,9 @@ public class PlayerController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public ModelAndView addingPlayer(@ModelAttribute Player player, Principal principal){
+        if(principal==null){
+            return new ModelAndView("login");
+        }
         final String currentUser = principal.getName();
         player.setUser_Id(currentUser);
 		ModelAndView modelAndView = new ModelAndView("add_player_form");
@@ -76,7 +82,10 @@ public class PlayerController {
 	}
 	
 	@RequestMapping(value="/list")  
-    public ModelAndView listOfPlayers() {  
+    public ModelAndView listOfPlayers(Principal principal) {
+        if(principal==null){
+            return new ModelAndView("login");
+        }
         ModelAndView modelAndView = new ModelAndView("list-of-players");  
           
         List<Player> players = playerService.getPlayers();  
@@ -86,7 +95,10 @@ public class PlayerController {
     }
 	
 	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)  
-    public ModelAndView editPlayerPage(@PathVariable Integer id) {  
+    public ModelAndView editPlayerPage(@PathVariable Integer id, Principal principal) {
+        if(principal==null){
+            return new ModelAndView("login");
+        }
         ModelAndView modelAndView = new ModelAndView("edit-player-form");  
         Player player = playerService.getPlayer(id);  
         modelAndView.addObject("player",player);  
@@ -94,8 +106,10 @@ public class PlayerController {
     }  
       
     @RequestMapping(value="/edit/{id}", method=RequestMethod.POST)  
-    public ModelAndView editingPlayer(@ModelAttribute Player player, @PathVariable Integer id) {  
-          
+    public ModelAndView editingPlayer(@ModelAttribute Player player, @PathVariable Integer id, Principal principal) {
+        if(principal==null){
+            return new ModelAndView("login");
+        }
         ModelAndView modelAndView = new ModelAndView("login");
           
         playerService.updatePlayer(player);  
@@ -107,7 +121,10 @@ public class PlayerController {
     }  
       
     @RequestMapping(value="/delete/{id}", method=RequestMethod.GET)  
-    public ModelAndView deleteplayer(@PathVariable Integer id) {  
+    public ModelAndView deleteplayer(@PathVariable Integer id, Principal principal) {
+        if(principal==null){
+            return new ModelAndView("login");
+        }
         ModelAndView modelAndView = new ModelAndView("add_player_form");
         playerService.deletePlayer(id);
         List<Player> players = playerService.getPlayers();

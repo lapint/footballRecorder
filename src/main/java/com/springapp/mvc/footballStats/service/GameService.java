@@ -15,4 +15,5 @@ public interface GameService {
     public void addGame(Game game);
     public List<Game> getGames();
     public Game getGame(Integer id);
+    public void deleteGame(Integer id);
 }

@@ -19,10 +19,10 @@
                 <!-- .nav, .navbar-search, .navbar-form, etc -->
                 <ul class="nav nav-tabs">
                     <li  id="gamesNav"><a href="${pageContext.request.contextPath}/game/create.html">Games</a></li>
-                    <li  id="recordPlayNav"><a href="${pageContext.request.contextPath}/game/playresult/add.html">Record Play</a></li>
-                    <li  id="playbookNav"><a href="${pageContext.request.contextPath}/playbook/add.html">Add Play to Playbook</a></li>
-                    <li  id="playersNav"><a href="${pageContext.request.contextPath}/players/add.html">Add Player</a></li>
-                    <li  id="playerStatsNav"><a href="${pageContext.request.contextPath}/../playerStats/list.html">Player Stats</a></li>
+                    <%--<li  id="recordPlayNav"><a href="${pageContext.request.contextPath}/game/playresult/add.html">Record Play</a></li>--%>
+                    <li  id="playbookNav"><a href="${pageContext.request.contextPath}/playbook/add.html">Playbook</a></li>
+                    <li  id="playersNav"><a href="${pageContext.request.contextPath}/players/add.html">Roster</a></li>
+                    <li  id="playerStatsNav"><a href="${pageContext.request.contextPath}/../playerStats/list.html">Player Statistics</a></li>
                     <li  id="logoutNav"><a href=<c:url value='/j_spring_security_logout'/>>Logout</a></li>
                 </ul>
             </div>
