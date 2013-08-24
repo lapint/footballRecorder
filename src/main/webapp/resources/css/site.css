@@ -11,6 +11,7 @@ body{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#e2e2e2',GradientType=0 ); /* IE6-9 */
 }
 html, body{
+    overflow: auto;
     height:100%;
 }
 .table-results{
@@ -90,53 +91,24 @@ td, th{
     width:100%;
 }
 
-.wrapper{
-    background-color: rgba(0, 0, 0, 0.2);
-    width: 1308px;
-    height: 1200px;
-    margin: 20px auto;
-    border-radius: 5px;
-}
-
-.loginWrapper{
-    font-size: 32px;
-    width:1100px;
-    margin:40px auto 0 auto;
-}
-
-.title{
-    right:100px;
-    margin: 10px 25px 35px 25px;
-    line-height: 1em;
-    color: #484b4b;
-    font-weight:bold;
-    font-size: 50px;
-    float:left;
-    /*text-shadow:0px 0px 0 rgb(190,190,190),1px 1px 0 rgb(159,159,159),2px 2px 0 rgb(127,127,127), 3px 3px 0 rgb(95,95,95),4px 4px 3px rgba(0,0,0,0.1),4px 4px 1px rgba(0,0,0,0.5),0px 0px 3px rgba(0,0,0,.2);*/
-}
-
 .contact{
-    background-color: white;
     height:500px;
     width:100%;
 }
 
 .playbook{
     background-color: #484b4b;
-    color: white;
     height:500px;
     width:100%;
 }
 
 .playResults{
-    background-color: white;
     height:500px;
     width:100%;
 }
 
 .players{
     padding-top:100px;
-    background-color: white;
     height:500px;
     width:100%;
 }
@@ -145,37 +117,6 @@ td, th{
     background-color: #484b4b;
     color: white;
     height:500px;
-    width:100%;
-}
-
-
-.info{
-    padding: 30px 0px 0px 10px;
-    font-size: 17px;
-    float: left;
-    color: white;
-    font-weight: bold;
-    /*background: rgba(255,255,255,.5); *//* Old browsers */
-    width: 800px;
-    height:500px;
-    /*border-radius: 5px;*/
-    /*box-shadow: 0px 0px 10px #888888;*/
-    margin: 0px 10px 0px 10px;
-}
-
-
-.login{
-    padding:30px 0 0 10px;
-    float: right;
-    margin:30px 10px 0 10px;
-
-}
-
-.loginContainer{
-    background-image: url("../../resources/img/football.jpg");
-    background-size: cover;
-    min-height: 500px;
-    min-width: 1100px;
     width:100%;
 }
 
@@ -187,27 +128,6 @@ td, th{
     width:500px;
 }
 
-
-table.dataTable tr.odd {
-    background-color: #DFDFDF;
-}
-
-table.dataTable tr.even {
-    background-color: rgb(190, 190, 190);
-}
-
-table.dataTable tr.even td.sorting_1 {
-    background-color: #4DB7FD;
-}
-
-table.dataTable tr.odd td.sorting_1 {
-    background-color: #80D1FF;
-}
-
-select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-    font-size:10.5px;
-    width: auto;
-}
 .table-results{
     min-width: 900px;
     max-width: 980px;
@@ -215,16 +135,10 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 }
 
 td, th{
+    font-size: 10px;
     width:20px;
 }
 
-.table-results th, .tableD .tableSearch{
-    width:5px;
-}
-
-.btn btn-navbar{
-
-}
 
 .add{
     box-shadow: 0px 0px 1px black;
@@ -236,113 +150,10 @@ td, th{
     margin: 20px 40px 20px 20px;
 }
 
-.login-navbar-inner{
-    position: absolute; bottom: 0; margin-left: 12px;
-    bottom: 0;
-    float:left;
-    /* margin-top: 50px; */
-}
-
-.loginNavbar{
-    min-width: 1100px;
-    margin: 0 auto;
-    background: rgba(255,255,255,1);
-    height: 100px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index:10;
-    box-shadow: 8px 2px 25px black;
-}
-
 .navbar .container{
     margin: 0 auto;
     width: 492px;
 }
-
-.login-navbar-inner .login-container{
-    width: 575px;
-}
-
-.errorblock {
-    color: #ff0000;
-    background-color: #ffEEEE;
-    border: 3px solid #ff0000;
-    padding: 8px;
-    margin: 16px;
-}
-
-.main{
-    width: 100%;
-    margin:100 auto 0 auto;
-}
-
-.navbar-inner{
-    margin: 0 auto;
-    width: 100%;
-}
-.navbar{
-    width:100%;
-}
-
-.wrapper{
-    background-color: rgba(0, 0, 0, 0.2);
-    width: 1308px;
-    height: 1200px;
-    margin: 20px auto;
-    border-radius: 5px;
-}
-
-.loginWrapper{
-    font-size: 32px;
-    width:1100px;
-    margin:40px auto 0 auto;
-}
-
-.title{
-    right:100px;
-    margin: 10px 25px 35px 25px;
-    line-height: 1em;
-    color: #484b4b;
-    font-weight:bold;
-    font-size: 50px;
-    float:left;
-    /*text-shadow:0px 0px 0 rgb(190,190,190),1px 1px 0 rgb(159,159,159),2px 2px 0 rgb(127,127,127), 3px 3px 0 rgb(95,95,95),4px 4px 3px rgba(0,0,0,0.1),4px 4px 1px rgba(0,0,0,0.5),0px 0px 3px rgba(0,0,0,.2);*/
-}
-
-.contact{
-    background-color: white;
-    height:500px;
-    width:100%;
-}
-
-.playbook{
-    background-color: #484b4b;
-    color: white;
-    height:500px;
-    width:100%;
-}
-
-.playResults{
-    background-color: white;
-    height:500px;
-    width:100%;
-}
-
-.players{
-    padding-top:100px;
-    background-color: white;
-    height:500px;
-    width:100%;
-}
-
-.playerStats{
-    background-color: #484b4b;
-    color: white;
-    height:500px;
-    width:100%;
-}
-
 
 .info{
     padding: 30px 0px 0px 10px;
@@ -358,27 +169,6 @@ td, th{
     margin: 0px 10px 0px 10px;
 }
 
-
-.login{
-    padding:30px 0 0 10px;
-    float: right;
-    margin:30px 10px 0 10px;
-
-}
-
-.loginContainer{
-    background-image: url("../../resources/img/football.jpg");
-    background-size: cover;
-    min-height: 500px;
-    min-width: 1100px;
-    width:100%;
-}
-
-.btn-group:first-child {
-    /* width:50px; */
-}
-
-
 table.dataTable tr.odd {
     background-color: #DFDFDF;
 }
@@ -388,11 +178,11 @@ table.dataTable tr.even {
 }
 
 table.dataTable tr.even td.sorting_1 {
-    background-color: #4DB7FD;
+    background-color: #5D8EAD;
 }
 
 table.dataTable tr.odd td.sorting_1 {
-    background-color: #80D1FF;
+    background-color: #5C9BBE;
 }
 
 select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
@@ -401,13 +191,10 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 }
 
 .table-results{
+    font-size: 10px;
     min-width: 800px;
     max-width: 900px;
     display: inline-block;
-}
-
-td, th{
-    width:50px;
 }
 
 .table-results th, .tableD .tableSearch{
@@ -418,16 +205,6 @@ td, th{
 
 }
 
-.add{
-    box-shadow: 0px 0px 1px black;
-    background-color: rgba(219, 219, 219,.4);
-    border-radius: 4px;
-    width: 268px;
-    float:left;
-    padding: 20px;
-    margin: 20px 40px 20px 20px;
-}
-
 .login-navbar-inner{
     position: absolute; bottom: 0; margin-left: 12px;
     bottom: 0;
@@ -435,46 +212,8 @@ td, th{
     /* margin-top: 50px; */
 }
 
-.loginNavbar{
-    min-width: 1100px;
-    margin: 0 auto;
-    background: rgba(255,255,255,1);
-    height: 100px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index:10;
-    box-shadow: 8px 2px 25px black;
-}
-
-.navbar .container{
-    margin: 0 auto;
-    width: 492px;
-}
-
 .login-navbar-inner .login-container{
     width: 575px;
-}
-
-.errorblock {
-    color: #ff0000;
-    background-color: #ffEEEE;
-    border: 3px solid #ff0000;
-    padding: 8px;
-    margin: 16px;
-}
-
-.main{
-    width: 100%;
-    margin:100 auto 0 auto;
-}
-
-.navbar-inner{
-    margin: 0 auto;
-    width: 100%;
-}
-.navbar{
-    width:100%;
 }
 
 .wrapper{
@@ -506,54 +245,6 @@ td, th{
     /*text-shadow:0px 0px 0 rgb(190,190,190),1px 1px 0 rgb(159,159,159),2px 2px 0 rgb(127,127,127), 3px 3px 0 rgb(95,95,95),4px 4px 3px rgba(0,0,0,0.1),4px 4px 1px rgba(0,0,0,0.5),0px 0px 3px rgba(0,0,0,.2);*/
 }
 
-.contact{
-    background-color: white;
-    height:500px;
-    width:100%;
-}
-
-.playbook{
-    background-color: #484b4b;
-    color: white;
-    height:500px;
-    width:100%;
-}
-
-.playResults{
-    background-color: white;
-    height:500px;
-    width:100%;
-}
-
-.players{
-    padding-top:100px;
-    background-color: white;
-    height:500px;
-    width:100%;
-}
-
-.playerStats{
-    background-color: #484b4b;
-    color: white;
-    height:500px;
-    width:100%;
-}
-
-
-.info{
-    padding: 30px 0px 0px 10px;
-    font-size: 17px;
-    float: left;
-    color: white;
-    font-weight: bold;
-    /*background: rgba(255,255,255,.5); *//* Old browsers */
-    width: 800px;
-    height:500px;
-    /*border-radius: 5px;*/
-    /*box-shadow: 0px 0px 10px #888888;*/
-    margin: 0px 10px 0px 10px;
-}
-
 
 .login{
     padding:30px 0 0 10px;
@@ -570,10 +261,6 @@ td, th{
     width:100%;
 }
 
-.btn-group:first-child {
-    /* width:50px; */
-}
-
 .playResultsTable, .playersTable, .playsTable, .playerStatsTable, .gamesTable{
     float: left;
     border-radius: 3px;
@@ -587,27 +274,6 @@ td, th{
 
 .playerStatResults{
     width:100%;
-}
-
-table.dataTable tr.odd {
-    background-color: #DFDFDF;
-}
-
-table.dataTable tr.even {
-    background-color: rgb(190, 190, 190);
-}
-
-table.dataTable tr.even td.sorting_1 {
-    background-color: #5D8EAD;
-}
-
-table.dataTable tr.odd td.sorting_1 {
-    background-color: #5C9BBE;
-}
-
-select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-    font-size:10.5px;
-    width: auto;
 }
 
 input[type="text"], th, td{

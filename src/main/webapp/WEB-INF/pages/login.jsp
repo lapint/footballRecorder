@@ -95,36 +95,25 @@
         </div>
 
         <div class="playResults" id="playResults">
-            <div class="wrapper">
                 Play Results<br/>
                 Create a new game. <br/>
                 Record every play as it happens in real time. <br/>
                 Analyze player performance during the game. <br/>
                 Analyze play performance during the game.
-            </div>
         </div>
-
         <div class="playbook" id="playbook">
-            <div class="wrapper">
                 Playbook<br/>
                 Enter plays into your own teams Virtual Playbook <br/>
                 Convenient play lookup. <br/>
-            </div>
         </div>
         <div class="players" id="players">
-            <div class="wrapper">
                 Players
-            </div>
         </div>
         <div class="playerStats" id="playerStats">
-            <div class="wrapper">
                 Player Stats
-            </div>
         </div>
         <div class="contact" id="contact">
-            <div class="wrapper">
                 Contact
-            </div>
         </div>
     </div>
 </div>

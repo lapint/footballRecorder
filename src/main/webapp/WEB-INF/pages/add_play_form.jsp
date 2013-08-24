@@ -21,8 +21,7 @@
     <div class="wrapper">
 
         <div class="add">
-            <h1>Add play to the play page</h1>
-            <p>Here you can add a new play to the play book.</p>
+            <h1>Add Play</h1>
             <form:form method="POST" commandName="play"
                 action="${pageContext.request.contextPath}/playbook/add.html">
                 <div class="control-group">
