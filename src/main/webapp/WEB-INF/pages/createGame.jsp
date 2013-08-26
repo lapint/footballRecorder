@@ -12,7 +12,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-    <title>Add player page</title>
+    <title>Game Management</title>
     <%--<link--%>
     <%--href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"--%>
     <%--rel="stylesheet" />--%>
@@ -114,6 +114,8 @@
 </body>
 <script type="text/javascript">
 //    document.getElementById("playersNav").setAttribute("class","active");
+
+
 
 $(document).ready(function() {
     oTable = $('#example').dataTable({

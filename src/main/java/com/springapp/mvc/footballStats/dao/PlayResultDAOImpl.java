@@ -52,5 +52,9 @@ public class PlayResultDAOImpl implements PlayResultDAO{
         String user = SecurityContextHolder.getContext().getAuthentication().getName();
 		return getCurrentSession().createQuery("from PlayResult pr where pr.User_Id ='" + user+"' AND game_Id=" + game_Id).list();
 	}
-	
+
+    public List<PlayResult> getAllPlayResults() {
+        String user = SecurityContextHolder.getContext().getAuthentication().getName();
+        return getCurrentSession().createQuery("from PlayResult pr where pr.User_Id ='" + user+"'").list();
+    }
 }

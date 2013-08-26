@@ -1,3 +1,7 @@
+<%@ page import="java.util.HashMap" %>
+<%@ page import="com.springapp.mvc.footballStats.model.PlayResult" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.springapp.mvc.footballStats.model.PlayerStat" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -56,11 +60,13 @@
                         <th>Tackles</th>
                         <th>TDs</th>
                         <th>XPs</th>
-                        <th>Stats</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="playerStat" items="${playerStats}">
+                    <%
+                        List<PlayerStat>  statsByGame = (List<PlayerStat>) request.getAttribute("statsByGame");
+                    %>
+                    <c:forEach var="playerStat" items="${statsByGame}">
                         <tr id="${playerStat.player_Id}">
                             <td>${playerStat.name}</td>
                             <td>${playerStat.sacks}</td>
@@ -79,9 +85,6 @@
                             <td>${playerStat.tackles}</td>
                             <td>${playerStat.TDs}</td>
                             <td>${playerStat.XPs}</td>
-                            <td>
-                                <a href="${pageContext.request.contextPath}/playerStats/list/${playerStat.player_Id}.html">View Stats</a><br>
-                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>

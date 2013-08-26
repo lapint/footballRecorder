@@ -38,4 +38,8 @@ public class PlayResultServiceImpl implements PlayResultService{
 		return playResultDAO.getPlayResults(game_Id);
 	}
 
+    public List<PlayResult> getAllPlayResults(){
+        return playResultDAO.getAllPlayResults();
+    }
+
 }

@@ -13,6 +13,7 @@
 <div class="wrapper">
     <table>
        <tr id="2" onclick="javascript:generateChart(2)">
+           <a href="#rushYdsChart"></a>
            <td>23</td>
            <td>22</td>
            <td>24</td>
@@ -21,6 +22,15 @@
            <td>29</td>
            <td>21</td>
        </tr>
+        <tr id="3" onclick="javascript:generateChart(3)">
+            <td>16</td>
+            <td>12</td>
+            <td>14</td>
+            <td>12</td>
+            <td>14</td>
+            <td>12</td>
+            <td>11</td>
+        </tr>
     </table>
     <div class="chart">
         <h1>Reception Yards</h1>
@@ -59,7 +69,10 @@
             ]
         }
 
-        var ctx = document.getElementById("recYdsChart").getContext("2d");
+        var canvas = document.getElementById("recYdsChart");
+        var ctx = canvas.getContext("2d");
+        canvas.width = 400;
+        canvas.height = 400;
         new Chart(ctx).Line(recData);
     }
     var rushDatas =   [20,25,32,24,26,8,10];
