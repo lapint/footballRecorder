@@ -33,10 +33,11 @@ public class PlayerStatDAOImpl implements PlayerStatDAO{
 	}
 
     @Override
-    public void updatePlayer(int player_id, PlayResult playResult) {
+    public PlayerStat updatePlayer(int player_id, PlayResult playResult) {
         List<PlayerStat> playerStats = getCurrentSession().createQuery("from PlayerStat ps where ps.Player_Id="+player_id).list();
+        PlayerStat playerStat;
         if(playerStats.size()>0){
-            PlayerStat playerStat = playerStats.get(0);
+            playerStat = playerStats.get(0);
 
             if(playResult.getPlay_Type().equals("Pass")){
                 if(playerStat.getRecYds()!=null){
@@ -62,7 +63,7 @@ public class PlayerStatDAOImpl implements PlayerStatDAO{
             getCurrentSession().save(playerStat);
         }
         else{
-            PlayerStat playerStat = new PlayerStat();
+            playerStat = new PlayerStat();
             playerStat.setName(playResult.getCarrier());
             playerStat.setUser_Id(playResult.getUser_Id());
             Date date = new Date();
@@ -79,7 +80,13 @@ public class PlayerStatDAOImpl implements PlayerStatDAO{
                 }
             }
             else if(playResult.getPlay_Type().equals("Run")){
-                playerStat.setRecYds(playResult.getYards()+playerStat.getRushYds());
+                if(playerStat.getRushYds()!=null){
+                    playerStat.setRushYds(playResult.getYards()+playerStat.getRushYds());
+                    playerStat.setCarries(playerStat.getCarries() + 1);
+                }else{
+                    playerStat.setRushYds(playResult.getYards());
+                    playerStat.setCarries(1);
+                }
             }
             if(playResult.getResult().equals("TD")){
                 if(playerStat.getTDs()!=null)
@@ -94,7 +101,7 @@ public class PlayerStatDAOImpl implements PlayerStatDAO{
         }
 //
 //  playerStat.setPassYds();
-
+        return playerStat;
 
     }
 

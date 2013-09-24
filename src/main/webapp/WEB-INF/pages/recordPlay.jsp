@@ -322,7 +322,7 @@
         oTable.fnAdjustColumnSizing();
 
         /*
-         * Support functions to provide a little bit of 'user friendlyness' to the textboxes in
+         * Support functions to provide a little bit of 'user friendliness' to the textboxes in
          * the footer
          */
         $("tfoot input").each( function (i) {

@@ -82,7 +82,13 @@ public class PlayerStatsController {
                     }
                 }
                 else if(playResult.getPlay_Type().equals("Run")){
-                    playerStat.setRecYds(playResult.getYards()+playerStat.getRushYds());
+                    if(playerStat.getRushYds()!=null){
+                        playerStat.setRushYds(playResult.getYards()+playerStat.getRushYds());
+                        playerStat.setCarries(playerStat.getCarries() + 1);
+                    }else{
+                        playerStat.setRushYds(playResult.getYards());
+                        playerStat.setCarries(1);
+                    }
                 }
                 if(playResult.getResult().equals("TD")){
                     if(playerStat.getTDs()!=null)
@@ -95,12 +101,13 @@ public class PlayerStatsController {
                 playerStat.setDate(playResult.getDate());
             }
             statsByGame.add(playerStat);
+            //modelAndView.addObject("playerStats", playerStats);
         }
+        Collections.sort(statsByGame);
+
         modelAndView.addObject("statsByGame", statsByGame);
+        //List<PlayerStat> playerStats =  playerStatsService.getPlayerStats();
 
         return modelAndView;
     }
-	
-
-
 }

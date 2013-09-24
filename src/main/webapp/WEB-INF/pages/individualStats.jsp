@@ -15,7 +15,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1; initial-scale = 1; user-scalable = no" />
 <title>Player Stats</title>
 <%--<link--%>
 	<%--href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"--%>
@@ -43,7 +43,8 @@
                 <table class = "table table-hover" id="example"  cellpadding="0" cellspacing="0">
                     <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Opponent</th>
                         <th>Sacks</th>
                         <th>Carries</th>
                         <th>Comps</th>
@@ -67,10 +68,11 @@
                         List<PlayerStat>  statsByGame = (List<PlayerStat>) request.getAttribute("statsByGame");
                     %>
                     <c:forEach var="playerStat" items="${statsByGame}">
-                        <tr id="${playerStat.player_Id}">
-                            <td>${playerStat.name}</td>
+                        <tr class="stats" name="${playerStat.opponent}">
+                            <td>${playerStat.date}</td>
+                            <td>${playerStat.opponent}</td>
                             <td>${playerStat.sacks}</td>
-                            <td>${playerStat.carries}</td>
+                            <td value="carries">${playerStat.carries}</td>
                             <td>${playerStat.comps}</td>
                             <%--<td>${playerStat.dataTables}</td>--%>
                             <td>${playerStat.FGs}</td>
@@ -79,11 +81,11 @@
                             <td>${playerStat.ints}</td>
                             <%--<td>${playerStat.opponent}</td>--%>
                             <td>${playerStat.passYds}</td>
-                            <td>${playerStat.recs}</td>
-                            <td>${playerStat.recYds}</td>
+                            <td value="recs">${playerStat.recs}</td>
+                            <td value="recYds">${playerStat.recYds}</td>
                             <td>${playerStat.rushYds}</td>
                             <td>${playerStat.tackles}</td>
-                            <td>${playerStat.TDs}</td>
+                            <td value="tds">${playerStat.TDs}</td>
                             <td>${playerStat.XPs}</td>
                         </tr>
                     </c:forEach>
@@ -91,7 +93,10 @@
                     <tfoot>
                     <tr>
                         <td>
-                            <input class="input-small search_init" type="text" name="name" value="Name"/>
+                            <input class="input-small search_init" type="text" name="Date" value="Date"/>
+                        </td>
+                        <td>
+                            <input class="input-small search_init" type="text" name="opponent" value="Opponent"/>
                         </td>
                         <td>
                             <input class="input-small search_init" type="text" name="sacks" value="Sacks"/>
@@ -142,22 +147,40 @@
             </div>
         </div>
         <div class="chart">
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <h3>Carries</h3>
+            <canvas id="carriesChart" value="carries" width="400" height="400"></canvas>
         </div>
+        <div class="chart">
+            <h3>Receptions</h3>
+            <canvas id="recChart" value="recs" width="400" height="400"></canvas>
+        </div>
+        <div class="chart">
+            <h3>Reception Yards</h3>
+            <canvas id="recYdsChart" value="recYds" width="400" height="400"></canvas>
+        </div>
+        <div class="chart">
+            <h3>Touchdowns</h3>
+            <canvas id="tdChart" value="tds" width="400" height="400"></canvas>
+        </div>
+
     </div>
 </body>
 <script type="text/javascript">
-    //Get the context of the canvas element we want to select
-    function generateChart(row){
-        var tds = document.getElementById(row).children;
+
+    function buildChart(chartName, column){
+        //All tr rows
+        var stats = document.getElementsByClassName("stats");
+        var labels = [];
         var data = [];
+        for(var i=0;i<stats.length;i++){
+            labels[i] = stats[i].getAttribute("name");
 
-        for(i = 0; i<tds.length; i++){
-            data.push(tds[i].innerHTML);
+            //Get a specific
+            var rowStat = stats[i].children;
+            data[i]=rowStat[column].innerHTML;
         }
-
-        var recData = {
-            labels : ["Game1","Game2","Game3","Game4","Game5","Game6","Game7"],
+        var chartData = {
+            labels : labels,
             datasets : [
                 {
                     fillColor : "rgba(151,187,205,0.5)",
@@ -168,54 +191,167 @@
                 }
             ]
         }
+//        var scaleOverride = {
+//            scaleOverride : true,
+//            scaleSteps : 10,
+//            scaleStepWidth : 1,
+//            scaleStartValue : 0
+//        }
 
-        var canvas = document.getElementById("myChart");
+        var canvas = document.getElementById(chartName);
         var ctx = canvas.getContext("2d");
-        canvas.width = 400;
-        canvas.height = 400;
-        new Chart(ctx).Line(recData);
+
+        var defaults = {
+
+            //Boolean - If we show the scale above the chart data
+            scaleOverlay : false,
+
+            //Boolean - If we want to override with a hard coded scale
+            scaleOverride : false,
+
+            //** Required if scaleOverride is true **
+            //Number - The number of steps in a hard coded scale
+            scaleSteps : null,
+            //Number - The value jump in the hard coded scale
+            scaleStepWidth : null,
+            //Number - The scale starting value
+            scaleStartValue : null,
+
+            //String - Colour of the scale line
+            scaleLineColor : "rgba(0,0,0,.1)",
+
+            //Number - Pixel width of the scale line
+            scaleLineWidth : 1,
+
+            //Boolean - Whether to show labels on the scale
+            scaleShowLabels : true,
+
+            <%--//Interpolated JS string - can access value--%>
+            <%--scaleLabel : "<%=value%>",--%>
+
+            //String - Scale label font declaration for the scale label
+            scaleFontFamily : "'Arial'",
+
+            //Number - Scale label font size in pixels
+            scaleFontSize : 12,
+
+            //String - Scale label font weight style
+            scaleFontStyle : "normal",
+
+            //String - Scale label font colour
+            scaleFontColor : "#666",
+
+            ///Boolean - Whether grid lines are shown across the chart
+            scaleShowGridLines : true,
+
+            //String - Colour of the grid lines
+            scaleGridLineColor : "rgba(0,0,0,.05)",
+
+            //Number - Width of the grid lines
+            scaleGridLineWidth : 1,
+
+            //Boolean - Whether the line is curved between points
+            bezierCurve : true,
+
+            //Boolean - Whether to show a dot for each point
+            pointDot : true,
+
+            //Number - Radius of each point dot in pixels
+            pointDotRadius : 3,
+
+            //Number - Pixel width of point dot stroke
+            pointDotStrokeWidth : 1,
+
+            //Boolean - Whether to show a stroke for datasets
+            datasetStroke : true,
+
+            //Number - Pixel width of dataset stroke
+            datasetStrokeWidth : 2,
+
+            //Boolean - Whether to fill the dataset with a colour
+            datasetFill : true,
+
+            //Boolean - Whether to animate the chart
+            animation : true,
+
+            //Number - Number of animation steps
+            animationSteps : 60,
+
+            //String - Animation easing effect
+            animationEasing : "easeOutQuart",
+
+            //Function - Fires when the animation is complete
+            onAnimationComplete : null
+
+        }
+        new Chart(ctx).Line(chartData);
     }
 
+    function getCharts(){
+        var charts = document.getElementsByClassName("chart");
+        for(i = 0; i<charts.length; i++){
+            var chart = charts[i];
+            var canvas = chart.children[1];
+            var chartName = canvas.getAttribute("id");
+            var chartValue = canvas.getAttribute("value");
+            var stats = document.getElementsByClassName("stats");
+            var row = stats[0];
+            var rowStats = row.children;
+            for(j = 0; j<rowStats.length; j++){
+                if(rowStats[j].getAttribute("value")==chartValue){
+                    buildChart(chartName,j);
+                }
+            }
+        }
+    }
 
     var asInitVals = new Array();
 
     $(document).ready(function() {
+
+
+
+        //BUILD DATATABLES
         var oTable = $('#example').dataTable( {
             "bJQueryUI": true,
             "oLanguage": {
                 "sSearch": ['Search all columns:']
             }
         });
-    $("tfoot input").keyup( function () {
-        /* Filter on the column (the index) of this element */
-        oTable.fnFilter( this.value, $("tfoot input").index(this) );
-    } );
+        $("tfoot input").keyup( function () {
+            /* Filter on the column (the index) of this element */
+            oTable.fnFilter( this.value, $("tfoot input").index(this) );
+        } );
 
-    oTable.fnAdjustColumnSizing();
+        oTable.fnAdjustColumnSizing();
 
-    /*
-     * Support functions to provide a little bit of 'user friendlyness' to the textboxes in
-     * the footer
-     */
-    $("tfoot input").each( function (i) {
-        asInitVals[i] = this.value;
-    } );
+        /*
+         * Support functions to provide a little bit of 'user friendlyness' to the textboxes in
+         * the footer
+         */
+        $("tfoot input").each( function (i) {
+            asInitVals[i] = this.value;
+        } );
 
-    $("tfoot input").focus( function () {
-        if ( this.className == "input-small search_init" )
-        {
-            this.className = "";
-            this.value = "";
-        }
-    } );
+        $("tfoot input").focus( function () {
+            if ( this.className == "input-small search_init" )
+            {
+                this.className = "";
+                this.value = "";
+            }
+        } );
 
-    $("tfoot input").blur( function (i) {
-        if ( this.value == "" )
-        {
-            this.className = "input-small search_init";
-            this.value = asInitVals[$("tfoot input").index(this)];
-        }
-    } );
+        $("tfoot input").blur( function (i) {
+            if ( this.value == "" )
+            {
+                this.className = "input-small search_init";
+                this.value = asInitVals[$("tfoot input").index(this)];
+            }
+        } );
+
+
+        //BUILD GRAPHS
+        getCharts();
     } );
 </script>
 </html>

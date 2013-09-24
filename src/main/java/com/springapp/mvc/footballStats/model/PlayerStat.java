@@ -4,10 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 
 @Entity
 @Table(name="PlayerStats")
-public class PlayerStat {
+public class PlayerStat implements Comparable<PlayerStat>{
 
     @Id
     private Integer Player_Id;
@@ -185,4 +188,30 @@ public class PlayerStat {
     }
 
 
+    @Override
+    public int compareTo(PlayerStat playerStat) {
+        String date = playerStat.getDate();
+        Date newDate  = getDate(date.split("-"));
+        Date thisDate = getDate(this.getDate().split("-"));
+
+
+        if(thisDate.before(newDate)){
+            return -1;
+        }
+        if(thisDate.after(thisDate)){
+            return 1;
+        }
+
+        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    private java.util.Date getDate(String[] split){
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, Integer.parseInt(split[2]));
+        cal.set(Calendar.MONTH, Integer.parseInt(split[0]));
+        cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(split[1]));
+        Date date = cal.getTime();
+        System.out.println(date.toString());
+        return date;
+    }
 }

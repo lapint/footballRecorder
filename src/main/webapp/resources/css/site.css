@@ -219,7 +219,9 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 .wrapper{
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.2);
-    width: 1308px;
+    min-width: 1308px;
+    width: 75%;
+    max-width: 1400px;
     min-height: 500px;
     height: auto;
     /* clear: both; */
@@ -280,3 +282,13 @@ input[type="text"], th, td{
     width:50px;
     margin:0;
 }
+
+.chart{
+    float:left;
+    margin:10px;
+}
+
+/*canvas{*/
+    /*width:400px;*/
+    /*height:400px;*/
+/*}*/

@@ -77,7 +77,6 @@
                 <table class = "table table-hover" id="example"  cellpadding="0" cellspacing="0">
                     <thead>
                     <tr>
-                        <th width="10%">id</th>
                         <th width="15%">Name</th>
                         <th width="10%">Number</th>
                         <th width="10%">Position</th>
@@ -89,7 +88,6 @@
                     <tbody>
                     <c:forEach var="player" items="${players}">
                         <tr>
-                            <td>${player.id}</td>
                             <td>${player.name}</td>
                             <td>${player.number}</td>
                             <td>${player.position}</td>
@@ -104,10 +102,6 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td>
-                            <input class="input-small search_init" type="text" name="id" value="Id"/>
-                        </td>
-
                         <td>
                             <input class="input-small search_init" type="text" name="name" value="Name"/>
                         </td>
